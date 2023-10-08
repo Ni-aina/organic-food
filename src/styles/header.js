@@ -17,8 +17,10 @@ export const itemMenu = {
 export const tabList = {
     fontSize: 12,
     margin: "15px 0",
+    padding: 0,
     color: "#FFF",
     borderRight: "1px solid #979797",
+    lineHeight: "1px",
     display: {
         xs: "none",
         md: "flex"

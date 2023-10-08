@@ -36,12 +36,16 @@ export const Header = ()=> {
     const [usd, setUsd] = useState(null);
     const [menu, setMenu] = useState(null);
     const [list, setList] = useState(null);
+    const [listScreen, setListSreen] = useState(null);
+    const [headphone, setHeadphone] = useState(null);
     const [searchScreen, setSearchScreen] = useState(false);
     const onSearch = searchScreen ? "none" : "flex";
+    const opneHead = Boolean(headphone);
     const openAccount = Boolean(account);
     const openUsd = Boolean(usd);
     const openMenu = Boolean(menu);
     const openList = Boolean(list);
+    const openListScreen = Boolean(listScreen);
     const handleChange = (event, newValue)=> {
         setActive(newValue)
     }
@@ -61,7 +65,7 @@ export const Header = ()=> {
     const handleCloseUsd = ()=> {
         setUsd(null);
     }
-    const handleClickMenu = (ev) => {
+    const handleClickMenu = (ev)=> {
         setMenu(ev.currentTarget);
     }
     const handleCloseMenu = ()=> {
@@ -72,6 +76,18 @@ export const Header = ()=> {
     }
     const handleCloseList = ()=> {
         setList(null);
+    }
+    const handleClickListScreen = (ev)=> {
+        setList(ev.currentTarget);
+    }
+    const handleCloseListScreen = ()=> {
+        setList(null);
+    }
+    const onClickHeadphone = (ev)=> {
+        setHeadphone(ev.currentTarget);
+    }
+    const onCloseHeadphone = ()=> {
+        setHeadphone(null);
     }
     return(
         <>
@@ -346,18 +362,59 @@ export const Header = ()=> {
                                         <MenuList 
                                             onClick={handleCloseMenu}
                                             sx={{
+                                                fontSize: 12,
                                                 backgroundColor: "#545454",
                                                 color: "#FFF"
                                             }}
                                         >
-                                            <MenuItem>HOME</MenuItem>
-                                            <MenuItem>SHOP</MenuItem>
-                                            <MenuItem>COLLECTION</MenuItem>
-                                            <MenuItem>PAGES</MenuItem>
-                                            <MenuItem>BLOGS</MenuItem>
-                                            <MenuItem>BUY VEGIST</MenuItem>
-                                            <MenuItem>ABOUT US</MenuItem>
-                                            <MenuItem>CONTACT US</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>HOME</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>SHOP</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>COLLECTION</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>PAGES</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>BLOGS</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>BUY VEGIST</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>ABOUT US</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>CONTACT US</MenuItem>
+                                            <MenuItem sx={{
+                                                fontSize: 12
+                                            }}>
+                                                <Box sx={{
+                                                    display: "flex",
+                                                }}>
+                                                    <img src="logos/headphones.png" alt="headphones" loading="lazy" width={18} height={18}/>
+                                                    <Box>
+                                                        <span style={{
+                                                            marginLeft: 10,
+                                                            color: "#5FA800"
+                                                        }}>
+                                                            Hotline
+                                                        </span><br />
+                                                        <span style={{
+                                                            fontSize: 12,
+                                                            marginLeft: 10,
+                                                            color: "#CACACA"
+                                                        }}>
+                                                            0123 456789
+                                                        </span>
+                                                    </Box>
+                                                </Box>
+                                            </MenuItem>
                                         </MenuList>
                                     </Menu>
                                 </ListItemButton>
@@ -367,157 +424,144 @@ export const Header = ()=> {
                 </Box>
             </Container>
             <Box sx={{
-                backgroundColor: "#545454"
+                backgroundColor: "#545454",
+                display: {
+                    xs: "none",
+                    md: "flex"
+                },
             }}>
                 <Container maxWidth="xl">
                     <AppBar 
                         position="static"
                         elevation={0}
                         sx={{
-                            backgroundColor: "#545454",
+                            backgroundColor: "#545454"
                         }}
-                    >
+                        >
                         <Toolbar variant="dense">
                             <Box sx={{ flexGrow: 1 }}>
                                 <Tabs>
                                     <Tab 
+                                        onClick={handleClickList}
                                         label={
-                                            <Box>
-                                                <Button sx={{
-                                                        fontSize: 12,
-                                                        padding: 0,
-                                                        color: "#FFF"
-                                                    }}
-                                                    onClick={handleClickList}
-                                                >
-                                                    Browse Category {openList ? <ExpandLess/> : <ExpandMore/>}
-                                                </Button>
-                                                <Menu
-                                                    anchorOrigin={{
-                                                        vertical: "bottom",
-                                                        horizontal: "right"
-                                                    }}
-                                                    transformOrigin={{
-                                                        vertical: "top",
-                                                        horizontal: "right"
-                                                    }}
-                                                    anchorEl={list}
-                                                    open={openList}
-                                                    PaperProps={{
-                                                        style: {
-                                                            width: 200,
-                                                            borderRadius: 0
-                                                        }
-                                                    }}
-                                                >
-                                                    <MenuList
-                                                        onClick={handleCloseList}
-                                                        sx={{
-                                                            backgroundColor: "#FCFAF9",
-                                                            border: "1px solid #EAEAEA"
-                                                        }}
-                                                    >
-                                                        <MenuItem>
-                                                            <img src="logos/Fruits.png" alt="Fruits" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Fresh Fruits
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Meat.png" alt="Meat" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Fresh Meat
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Vegetable.png" alt="Vegetable" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Fresh Vegetable
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Searfood.png" alt="Searfood" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Green Searfood
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Dryfruit.png" alt="Dryfruit" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Organic Dryfruit
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Masala.png" alt="Masala" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Organic Masala
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Juice.png" alt="Juice" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Organic Juice
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Fish.png" alt="Fish" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Sea & Fish
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Fruit.png" alt="Fruit" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Summer Fruit
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Rack.png" alt="Rack" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Baker's Rack
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Chesse.png" alt="Chesse" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Dairy & Chesse
-                                                            </span>
-                                                        </MenuItem>
-                                                        <MenuItem>
-                                                            <img src="logos/Wine.png" alt="Wine" loading="lazy"/>
-                                                            <span style={itemMenu}>
-                                                                Organic Wine
-                                                            </span>
-                                                        </MenuItem>
-                                                    </MenuList>
-                                                </Menu>
-                                            </Box>
+                                            <Button sx={{
+                                                    fontSize: 12,
+                                                    padding: 0,
+                                                    color: "#FFF"
+                                                }}
+                                            >
+                                                Browse Category {openList ? <ExpandLess/> : <ExpandMore/>}
+                                            </Button>
                                         } 
                                         sx={{
                                             backgroundColor: "#5FA800",
                                             color: "#FFF"
                                         }}
                                     />
-                                    <Tab label="HOME" 
-                                        sx={{
-                                            fontSize: 12,
-                                            margin: {
-                                                xs: "15px 0",
-                                                lg: "15px 0 15px 10px"
-                                            },
-                                            color: "#FFF",
-                                            borderLeft: {
-                                                xs: "none",
-                                                lg: "1px solid #979797"
-                                            },
-                                            borderRight: "1px solid #979797",
-                                            display: {
-                                                xs: "none",
-                                                md: "flex"
-                                            },
-                                            "&:hover": {
-                                                backgroundColor: "rgba(0, 0, 0, 0.09)"
+                                    <Menu
+                                        anchorOrigin={{
+                                            vertical: "bottom",
+                                            horizontal: "right"
+                                        }}
+                                        transformOrigin={{
+                                            vertical: "top",
+                                            horizontal: "right"
+                                        }}
+                                        anchorEl={list}
+                                        open={openList}
+                                        PaperProps={{
+                                            style: {
+                                                width: 185,
+                                                borderRadius: 0
                                             }
+                                        }}
+                                    >
+                                        <MenuList
+                                            onClick={handleCloseList}
+                                            sx={{
+                                                backgroundColor: "#FCFAF9",
+                                                border: "1px solid #EAEAEA"
+                                            }}
+                                        >
+                                            <MenuItem>
+                                                <img src="logos/Fruits.png" alt="Fruits" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Fresh Fruits
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Meat.png" alt="Meat" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Fresh Meat
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Vegetable.png" alt="Vegetable" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Fresh Vegetable
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Searfood.png" alt="Searfood" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Green Searfood
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Dryfruit.png" alt="Dryfruit" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Organic Dryfruit
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Masala.png" alt="Masala" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Organic Masala
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Juice.png" alt="Juice" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Organic Juice
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Fish.png" alt="Fish" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Sea & Fish
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Fruit.png" alt="Fruit" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Summer Fruit
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Rack.png" alt="Rack" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Baker's Rack
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Chesse.png" alt="Chesse" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Dairy & Chesse
+                                                </span>
+                                            </MenuItem>
+                                            <MenuItem>
+                                                <img src="logos/Wine.png" alt="Wine" loading="lazy"/>
+                                                <span style={itemMenu}>
+                                                    Organic Wine
+                                                </span>
+                                            </MenuItem>
+                                        </MenuList>
+                                    </Menu>
+                                    <Tab label="HOME" 
+                                        sx={tabList}
+                                        style={{
+                                            marginLeft: 10,
+                                            borderLeft: "1px solid #979797"
                                         }}
                                     />
                                     <Tab label="SHOP" 
@@ -540,7 +584,7 @@ export const Header = ()=> {
                             <Box sx={{
                                 display: {
                                     xs: "none",
-                                    md: "flex"
+                                    lg: "flex"
                                 }
                             }}>
                                 <img src="logos/headphones.png" alt="headphones" loading="lazy"/>
@@ -560,10 +604,188 @@ export const Header = ()=> {
                                     </span>
                                 </Box>
                             </Box>
+                            <Box sx={{
+                                display: {
+                                    xs: "flex",
+                                    lg: "none"
+                                }
+                            }}>
+                                <img src="logos/headphones.png" alt="headphones" loading="lazy"
+                                    onClick={onClickHeadphone}
+                                    style={{
+                                        cursor: "pointer",
+                                        marginRight: 15
+                                    }}
+                                />
+                                <Menu
+                                    anchorOrigin={{
+                                        vertical: "bottom",
+                                        horizontal: "right"
+                                    }}
+                                    transformOrigin={{
+                                        vertical: "top",
+                                        horizontal: "right"
+                                    }}
+                                    anchorEl={headphone}
+                                    open={opneHead}
+                                >
+                                    <MenuList
+                                        onClick={onCloseHeadphone}
+                                        sx={{
+                                            backgroundColor: "#545454"
+                                        }}
+                                    >
+                                        <MenuItem>
+                                            <span style={{
+                                                marginLeft: 10,
+                                                color: "#5FA800"
+                                            }}>
+                                                Hotline
+                                            </span>
+                                        </MenuItem>
+                                        <MenuItem>
+                                            <span style={{
+                                                fontSize: 12,
+                                                marginLeft: 10,
+                                                color: "#CACACA"
+                                            }}>
+                                                0123 456789
+                                            </span>
+                                        </MenuItem>
+                                    </MenuList>
+                                </Menu>
+                            </Box>
                         </Toolbar>
                     </AppBar>
                 </Container>
             </Box>
+            <Container maxWidth="xl" sx={{
+                display: {
+                    xs: "flex",
+                    md:"none"
+                },
+            }}>
+                <Box sx={{
+                        backgroundColor: "#5FA800",
+                        color: "#FFF",
+                        padding: 1,
+                        textAlign: "center",
+                        cursor: "pointer",
+                        width: "100%"
+                    }}
+                    onClick={handleClickListScreen}
+                >
+                    <Button
+                        sx={{
+                            color: "#FFF",
+                            "&:active": {
+                                backgroundColor: "transparent"
+                            }
+                        }}
+                    >
+                        Browse Category {openListScreen ? <ExpandLess/> : <ExpandMore/>}
+                    </Button> 
+                </Box>
+                <Menu
+                    anchorOrigin={{
+                        vertical: "bottom",
+                        horizontal: "right"
+                    }}
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right"
+                    }}
+                    anchorEl={listScreen}
+                    open={openListScreen}
+                    PaperProps={{
+                        style: {
+                            width: 100,
+                            borderRadius: 0
+                        }
+                    }}
+                >
+                    <MenuList
+                        onClick={handleCloseListScreen}
+                        sx={{
+                            backgroundColor: "#FCFAF9",
+                            border: "1px solid #EAEAEA"
+                        }}
+                    >
+                        <MenuItem>
+                            <img src="logos/Fruits.png" alt="Fruits" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Fresh Fruits
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Meat.png" alt="Meat" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Fresh Meat
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Vegetable.png" alt="Vegetable" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Fresh Vegetable
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Searfood.png" alt="Searfood" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Green Searfood
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Dryfruit.png" alt="Dryfruit" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Organic Dryfruit
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Masala.png" alt="Masala" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Organic Masala
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Juice.png" alt="Juice" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Organic Juice
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Fish.png" alt="Fish" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Sea & Fish
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Fruit.png" alt="Fruit" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Summer Fruit
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Rack.png" alt="Rack" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Baker's Rack
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Chesse.png" alt="Chesse" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Dairy & Chesse
+                            </span>
+                        </MenuItem>
+                        <MenuItem>
+                            <img src="logos/Wine.png" alt="Wine" loading="lazy"/>
+                            <span style={itemMenu}>
+                                Organic Wine
+                            </span>
+                        </MenuItem>
+                    </MenuList>
+                </Menu>
+            </Container>
         </>
     );
 }
