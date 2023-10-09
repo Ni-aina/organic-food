@@ -1,7 +1,9 @@
 import { Box } from "@mui/material";
+import { box } from "../../styles/footer";
 
 export const Footer = ()=> {
     return(
-        <Box>Footer</Box>
+        <Box sx={box}>
+        </Box>
     );
 }
