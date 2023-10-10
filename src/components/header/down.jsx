@@ -18,6 +18,7 @@ import {
 import { category } from "../../data/category";
 import { menu } from "../../data/menu";
 import { Screen } from "./screen";
+import { Link } from "react-router-dom";
 
 export const Down = ()=> {
     const [active, setActive] = useState(1);
@@ -103,17 +104,25 @@ export const Down = ()=> {
                                         }}
                                     />
                                     {menu.map((item, key) =>
-                                        <Tab
-                                            {...changeId(key)}
-                                            key={key}
-                                            label={item}
-                                            sx={tabList}
+                                        <Link 
+                                            to={`/${item.toLocaleLowerCase()}`}
                                             style={{
-                                                marginLeft: `${key===0 ? "10px" : "0"}`,
-                                                borderLeft: `${key===0 ? "1px solid #979797" : "none"}`,
-                                                display: `${key!==6 && key!==7 ? "flex" : "none"}`
+                                                textDecoration: "none"
                                             }}
-                                        />
+                                            key={key}
+                                            relative="path"
+                                        >
+                                            <Tab
+                                                {...changeId(key)}
+                                                label={item}
+                                                sx={tabList}
+                                                style={{
+                                                    marginLeft: `${key===0 ? "10px" : "0"}`,
+                                                    borderLeft: `${key===0 ? "1px solid #979797" : "none"}`,
+                                                    display: `${key!==6 && key!==7 ? "flex" : "none"}`
+                                                }}
+                                            />
+                                        </Link>
                                     )}
                                 </Tabs>
                                 <Menu
