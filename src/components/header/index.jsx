@@ -9,7 +9,8 @@ export const Header = ()=> {
                 position: "fixed",
                 top: 0,
                 width: "100%",
-                backgroundColor: "#FFF"
+                backgroundColor: "#FFF",
+                zIndex: 2
             }}
          >
             <HighMid />
