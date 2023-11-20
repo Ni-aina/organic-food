@@ -1,4 +1,5 @@
 export const formInput = {
+    margin: 1,
     marginBottom: 3,
     width: 300,
     border: "1px solid #FFF",

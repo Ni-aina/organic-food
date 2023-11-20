@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Header } from './components/header';
+import { Footer } from './components/footer';
 import { CssBaseline } from '@mui/material';
 import { Home } from "./views/home";
 import { ShoppingCart } from "./views/shopping-cart";
@@ -20,6 +21,7 @@ const App = ()=> {
             <Route path='*' element={<Navigate to='/error/404' />} />
             <Route path='/error/404' element={<NotFound/>} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
